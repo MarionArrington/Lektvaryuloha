@@ -1,0 +1,265 @@
+<!-- Načítanie nádherného kaligrafického fontu z Google Fonts --> 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"> 
+
+<!-- Celý obal zmenšený na polovicu šírky (50%) a zarovnaný na stred --> 
+<div style="background-color: #31231d; padding: 30px 20px; border-radius: 8px; width: 50%; margin: 0 auto; box-sizing: border-box;"> 
+
+<div style="width: 100%; margin-bottom: 2.5rem; text-align: center;"> 
+    <!-- Horná čiara v novej fialovej farbe --> 
+    <div style="width: 100%; height: 16px; background-color: #d27af5; border-radius: 2px; box-shadow: 0 3px 8px rgba(0,0,0,0.4); margin-bottom: 0.4rem;"></div> 
+    
+    <!-- Grafický nadpis --> 
+    <center><img src="https://i.ibb.co/wKmdYtM/loha3.jpg" width="75%" style="border-radius: 4px;" /></center><br><br>
+
+    <!-- Nadpis: Pravidlá pre vypracovanie (vľavo, s dvojbodkou, podčiarknutý, menší) --> 
+    <div style="max-width: 90%; margin: 0 auto 0.6rem auto; text-align: left;"> 
+        <h3 style="color: #d27af5; font-size: 1.5rem; font-family: 'Great Vibes', cursive; margin: 0; padding-bottom: 3px; border-bottom: 1px solid #d27af5; display: inline-block; letter-spacing: 0.5px;">Pravidlá pre vypracovanie:</h3> 
+    </div> 
+
+    <!-- Pravidlá s hustejším riadkovaním --> 
+    <div style="text-align: justify; max-width: 90%; margin: 0 auto; line-height: 1.15; color: #d8b37e;"> 
+        <p style="margin-bottom: 0.25rem;"><font size="+1" color="#d27af5"><b>•</b></font> Domáce úlohy sú <font color="#d27af5"><b>dobrovoľné</b></font> (za ich nevypracovanie nedostanete trolla)</p> 
+        <p style="margin-bottom: 0.25rem;"><font size="+1" color="#d27af5"><b>•</b></font> Na známku môžete odovzdať len <font color="#d27af5"><b>jedno</b></font> z ponúknutých zadaní</p> 
+        <p style="margin-bottom: 0;"><font size="+1" color="#d27af5"><b>•</b></font> Ak rovnako kvalitne spracujte <font color="#d27af5"><b>dve zadania</b></font>, za druhé dostanete <font color="#d27af5"><b>+. Tri pluská = Vynikajíci.</b></font></p> 
+    </div> 
+
+    <!-- Jednotný rozostup nad oddeľovačom --> 
+    <br><br> 
+    <!-- Fialový oddeľovač --> 
+    <center><img src="https://i.ibb.co/BTZTn6d/border-line-violet.gif" width=75% border="0" /></center><br>
+    <!-- Jednotný rozostup pod oddeľovačom --> 
+    <br><br> 
+
+    <!-- CSS štýly – kompaktné štvorce + kaligrafický font + luxusný zlatý gradient --> 
+    <style> 
+        .ukol-input { display: none; } 
+         
+        /* Kompaktný štvorec (90x90px) */ 
+        .ukol-card { 
+            width: 90px; height: 90px; 
+            border: 3px solid #d27af5; 
+            background-color: #faf9f6; 
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between; 
+            padding: 8px 6px; box-sizing: border-box; position: relative; cursor: pointer; 
+            transition: all 0.35s ease; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04); 
+        } 
+        .ukol-card:hover { 
+            box-shadow: 0 6px 18px rgba(210,122,245,0.25); 
+            transform: translateY(-2px); 
+        } 
+
+        .obsah-zlozka { display: none; margin-top: 1.5rem; text-align: left; } 
+
+        /* AKTÍVNY STAV: Pevný fialový rám + hlboký fialovo-zlatý gradient vnútri */ 
+        #cb1:checked ~ .grid-container #card1, 
+        #cb2:checked ~ .grid-container #card2, 
+        #cb3:checked ~ .grid-container #card3, 
+        #cb4:checked ~ .grid-container #card4 { 
+            background: linear-gradient(135deg, #2b1d33 0%, #684b7a 50%, #34223d 100%); 
+            border-color: #d27af5; 
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.4), 0 6px 20px rgba(210,122,245,0.3); 
+        } 
+         
+        /* Zmena farby kaligrafického textu pri kliknutí */ 
+        #cb1:checked ~ .grid-container #card1 span, 
+        #cb2:checked ~ .grid-container #card2 span, 
+        #cb3:checked ~ .grid-container #card3 span, 
+        #cb4:checked ~ .grid-container #card4 span { 
+            color: #ffd700 !important; 
+        } 
+         
+        #cb1:checked ~ .grid-container #card1 .ciarka, 
+        #cb2:checked ~ .grid-container #card2 .ciarka, 
+        #cb3:checked ~ .grid-container #card3 .ciarka, 
+        #cb4:checked ~ .grid-container #card4 .ciarka { 
+            background-color: #ffd700 !important; 
+            opacity: 0.9; 
+        } 
+
+        /* Plynulé otvorenie okna */ 
+        #cb1:checked ~ .obsah-zlozka-1, 
+        #cb2:checked ~ .obsah-zlozka-2, 
+        #cb3:checked ~ .obsah-zlozka-3, 
+        #cb4:checked ~ .obsah-zlozka-4 { 
+            display: block; 
+            animation: fadeInLux 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+        } 
+
+        @keyframes fadeInLux { 
+            from { opacity: 0; transform: translateY(-6px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        } 
+
+        /* Štýly pre tooltipy */ 
+        .tooltip-container { 
+            position: relative; 
+            display: inline-block; 
+        } 
+        .tooltip-text { 
+            visibility: hidden; 
+            background-color: #d27af5; 
+            color: #ffd700; 
+            text-align: center; 
+            border-radius: 4px; 
+            padding: 4px 8px; 
+            position: absolute; 
+            z-index: 1; 
+            bottom: 125%; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            white-space: nowrap; 
+            font-size: 0.75rem; 
+            font-family: sans-serif; 
+            opacity: 0; 
+            transition: opacity 0.3s; 
+            border: 1px solid #ffd700; 
+        } 
+        .tooltip-container:hover .tooltip-text { 
+            visibility: visible; 
+            opacity: 1; 
+        } 
+    </style> 
+
+    <!-- Neviditeľné prepínače --> 
+    <input type="radio" id="cb1" name="ukol-group" class="ukol-input"> 
+    <input type="radio" id="cb2" name="ukol-group" class="ukol-input"> 
+    <input type="radio" id="cb3" name="ukol-group" class="ukol-input"> 
+    <input type="radio" id="cb4" name="ukol-group" class="ukol-input"> 
+
+    <!-- 4 menšie kompaktné štvorce --> 
+    <div class="grid-container" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;"> 
+         
+        <!-- Karta 1 --> 
+        <label for="cb1" class="ukol-card" id="card1"> 
+            <div style="width: 100%; display: flex; align-items: center; justify-content: center; position: relative;"> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-right: 2px;"></div> 
+                <img src="https://i.ibb.co/nM3Z6Jm2/potion.png" alt="potion" border="0" style="width: 16px; height: auto; flex-shrink: 0;" /> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-left: 2px;"></div> 
+            </div> 
+            <span style="color: #d27af5; font-size: 1.2rem; font-family: 'Great Vibes', cursive; letter-spacing: 0.5px; line-height: 1; margin-bottom: 2px;">Zadanie 1</span> 
+        </label> 
+
+        <!-- Karta 2 --> 
+        <label for="cb2" class="ukol-card" id="card2"> 
+            <div style="width: 100%; display: flex; align-items: center; justify-content: center; position: relative;"> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-right: 2px;"></div> 
+                <img src="https://i.ibb.co/nM3Z6Jm2/potion.png" alt="potion" border="0" style="width: 16px; height: auto; flex-shrink: 0;" /> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-left: 2px;"></div> 
+            </div> 
+            <span style="color: #d27af5; font-size: 1.2rem; font-family: 'Great Vibes', cursive; letter-spacing: 0.5px; line-height: 1; margin-bottom: 2px;">Zadanie 2</span> 
+        </label> 
+
+        <!-- Karta 3 --> 
+        <label for="cb3" class="ukol-card" id="card3"> 
+            <div style="width: 100%; display: flex; align-items: center; justify-content: center; position: relative;"> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-right: 2px;"></div> 
+                <img src="https://i.ibb.co/nM3Z6Jm2/potion.png" alt="potion" border="0" style="width: 16px; height: auto; flex-shrink: 0;" /> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-left: 2px;"></div> 
+            </div> 
+            <span style="color: #d27af5; font-size: 1.2rem; font-family: 'Great Vibes', cursive; letter-spacing: 0.5px; line-height: 1; margin-bottom: 2px;">Zadanie 3</span> 
+        </label> 
+
+        <!-- Karta 4 --> 
+        <label for="cb4" class="ukol-card" id="card4"> 
+            <div style="width: 100%; display: flex; align-items: center; justify-content: center; position: relative;"> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-right: 2px;"></div> 
+                <img src="https://i.ibb.co/nM3Z6Jm2/potion.png" alt="potion" border="0" style="width: 16px; height: auto; flex-shrink: 0;" /> 
+                <div class="ciarka" style="flex-grow: 1; height: 1px; background-color: #ffd700; opacity: 0.8; margin-left: 2px;"></div> 
+            </div> 
+            <span style="color: #d27af5; font-size: 1.2rem; font-family: 'Great Vibes', cursive; letter-spacing: 0.5px; line-height: 1; margin-bottom: 2px;">Zadanie 4</span> 
+        </label> 
+
+    </div> 
+
+    <!-- Výsuvné okná --> 
+    <div class="obsah-zlozka obsah-zlozka-1"> 
+        <div style="background-color: #faf9f6; border: 2px solid #d27af5; border-top: 4px solid #d27af5; padding: 22px; border-radius: 4px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: justify;"> 
+            <h4 style="color: #d27af5; margin-top: 0; font-family: serif; border-bottom: 1px solid #ffd700; padding-bottom: 8px; font-size: 1.05rem;">Logika v skúmavkách</h4> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Ak už pred blížiacimi sa vianočnými prázdninami pociťujete únavu z množstva tvorivých úloh, môžete tentoraz svoje schopnosti preveriť trochu odlišným spôsobom – prostredníctvom <font color="#d27af5"><b>jednoduchej logickej <a href="https://poki.com/sk/g/water-color-sort#" target="_blank" style="color: #d27af5; text-decoration: underline;">hry</a></b></font>, ktorá je založená na triedení tekutín podľa farby.</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Vašou úlohou je postupným prelievaním tekutiny medzi skúmavkami dosiahnuť stav, v ktorom bude každá skúmavka obsahovať iba jednu farbu. Jednotlivé kroky je pritom potrebné voliť premyslene, keďže každý presun ovplyvňuje možnosti ďalšieho postupu.</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0;">Pre získanie známky je potrebné <font color="#d27af5"><b>úspešne vyriešiť prvých 30 úrovní</b></font>. Splnenie úlohy následne preukážte screenshotom, na ktorom bude viditeľný váš <font color="#000000"><b>podpis a dosiahnutý progres</b></font>. Screenshot priložte k odovzdaniu úlohy ako dôkaz o jej splnení.</p> 
+        </div> 
+    </div> 
+
+    <div class="obsah-zlozka obsah-zlozka-2"> 
+        <div style="background-color: #faf9f6; border: 2px solid #d27af5; border-top: 4px solid #d27af5; padding: 22px; border-radius: 4px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: justify;"> 
+            <h4 style="color: #d27af5; margin-top: 0; font-family: serif; border-bottom: 1px solid #ffd700; padding-bottom: 8px; font-size: 1.05rem;">Alchýmia farieb</h4> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Máte náladu na praktické zadanie domácej úlohy? V tom prípade si môžete vyskúšať prácu začínajúceho lektvarológa. Vašou úlohou bude vytvoriť <font color="#d27af5"><b>jednoduchý farebný „lektvar“</b></font> podľa priloženého <a href="https://www.facebook.com/reel/1115373060726632" target="_blank" style="color:#d27af5; text-decoration: underline;"><b>videonávodu</b></a>.</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Na jeho prípravu nepotrebujete žiadne špeciálne vybavenie – postačí vám niekoľko bežne dostupných pomôcok: <b>papier, fixky alebo pastelky, vodové farby, štetec, euroobal a biela papierová servítka</b>. Pri tvorbe postupujte podľa jednotlivých krokov vo videonávode a pokúste sa výslednému lektvaru vdýchnuť čo najpresvedčivejší <font color="#d27af5"><b>magický vzhľad</b></font>.</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0;">Celý proces tvorby zachyťte na troch fotografiách – <b>pred začatím práce, počas tvorby a po jej dokončení</b>. Na každej fotografii musí byť zároveň viditeľná kartička s vaším menom, ktorá umožní jednoznačne overiť autorstvo vášho výtvoru.</p> 
+        </div> 
+    </div> 
+
+    <div class="obsah-zlozka obsah-zlozka-3"> 
+        <div style="background-color: #faf9f6; border: 2px solid #d27af5; border-top: 4px solid #d27af5; padding: 22px; border-radius: 4px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: justify;"> 
+            <h4 style="color: #d27af5; margin-top: 0; font-family: serif; border-bottom: 1px solid #ffd700; padding-bottom: 8px; font-size: 1.05rem;"><font color="#d27af5"><b>Dar alebo kliatba Tekutého šťastia?</b></font></h4> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;"><font color="#d27af5"><b>Felix Felicis – Tekuté šťastie</b></font> je lektvar, ktorý svojmu užívateľovi na určitý čas <font color="#d27af5"><b>poskytuje mimoriadne priaznivý priebeh udalostí.</b></font> Veci, do ktorých sa pustí, mu vychádzajú takmer bez námahy a rozhodnutia, ktoré urobí, ho spravidla vedú k úspešnému výsledku.</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Predstavte si však, že by ste takýto lektvar mohli vypiť vždy, keď stojíte pred dôležitou skúškou, rozhodnutím alebo prekážkou. Bol by výsledok, ktorý by ste vďaka nemu dosiahli, skutočne vašim úspechom? Je hrdinstvo vyhrať zápas alebo prekonať prekážku vtedy, keď vám k tomu dopomohla fľaštička lektvaru, alebo sa tým človek ochudobňuje o vlastný rast a skúsenosti? Čo zostane z človeka, ktorý sa spolieha iba na vonkajšiu pomoc a prestane veriť vo vlastné schopnosti a silu vlastných chýb? Je dôležitejší samotný výsledok, alebo cesta, ktorá k nemu vedie? Môže nám neúspech, chyba či nesprávne rozhodnutie v konečnom dôsledku priniesť viac než bezchybný výsledok dosiahnutý vďaka vonkajšej pomoci?</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0;"><font color="#d27af5"><b>Napíšte úvahu</b></font> <b>(minimálne 250 slov)</b> na túto tému. Nesnažte sa pritom nájsť jedinú správnu odpoveď. Dôležitejšie je, aby ste svoj názor dokázali logicky zdôvodniť, pracovali s vlastnými argumentmi a zamysleli sa aj nad opačným pohľadom.</p> 
+        </div> 
+    </div> 
+
+    <div class="obsah-zlozka obsah-zlozka-4"> 
+        <div style="background-color: #faf9f6; border: 2px solid #d27af5; border-top: 4px solid #d27af5; padding: 22px; border-radius: 4px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: justify;"> 
+            <h4 style="color: #d27af5; margin-top: 0; font-family: serif; border-bottom: 1px solid #ffd700; padding-bottom: 8px; font-size: 1.05rem;"><font color="#d27af5"><b>Darček, ktorý si nemal otvoriť</b></font></h4> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Niekedy tie najnebezpečnejšie lektvary nie sú skryté v tmavých zaprášených kútoch laboratória, ale objavia sa ako obyčajný balíček, ktorý jedného dňa nájdete pred dverami svojej izby – bez odosielateľa, bez vysvetlenia a bez možnosti zistiť, kto ho tam zanechal.</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Predstavte si, že nájdete v pošte starú, <font color="#d27af5"><b>neoznačenú sklenenú banku s podivnou perleťovou tekutinou.</b></font> Spolu s ňou sa v balíčku nachádza jediný lístok bez podpisu: <i>„<b>Pretože viem, po čom tajne túžiš.</b>“</i> V okamihu, keď vezmete banku do rúk, začne tekutina vo vnútri pomaly meniť farbu a reagovať na teplo vašich dlaní. Neviete, kto vám ju poslal, čo contains ani prečo ju niekto vytvoril práve pre vás. Napriek tomu sa ocitáte pred rozhodnutím, ktoré môže zmeniť všetko.</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem;">Rozhodnete sa obsah banky vypiť, alebo odoláte pokušeniu? Čo sa stane v momente, keď fľaštičku otvoríte?</p> 
+            <p style="color: #2c2c2c; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0;"><font color="#d27af5"><b>Napíšte krátky príbeh</b></font> <b>(minimálne 200 slov)</b>, v ktorom situáciu rozviniete. Spôsob, akým príbeh zakončíte, ponechám na vás. Nezabudnite však, že pri neznámom lektvare nemusí byť najväčším nebezpečenstvom jeho účinok, ale dôvod, pre ktorý ho človek túži vyskúšať.</p> 
+        </div> 
+    </div> 
+
+    <!-- Jednotný rozostup nad oddeľovačom --> 
+    <br><br> 
+    <!-- Fialový oddeľovač --> 
+    <center><img src="https://i.ibb.co/BTZTn6d/border-line-violet.gif" width=75% border="0" /></center><br>
+    <!-- Jednotný rozostup pod oddeľovačom --> 
+    <br><br> 
+
+    <!-- Nadpis: Spôsoby odovzdania (vľavo, s dvojbodkou, podčiarknutý, menší) --> 
+    <div style="max-width: 90%; margin: 0.5rem auto 0.6rem auto; text-align: left;"> 
+        <h3 style="color: #d27af5; font-size: 1.5rem; font-family: 'Great Vibes', cursive; margin: 0; padding-bottom: 3px; border-bottom: 1px solid #d27af5; display: inline-block; letter-spacing: 0.5px;">Spôsoby odovzdania:</h3> 
+    </div> 
+
+    <!-- Inštrukcie k odovzdávaniu --> 
+    <div style="max-width: 90%; margin: 0 auto; text-align: justify; line-height: 1.35; color: #d8b37e;"> 
+        <p style="margin-bottom: 0.6rem;"><b><font color="#d27af5">•</font></b> Úlohu môžete zasielať pomocou <font color="#d27af5"><b>formulára</b></font> nižšie, <font color="#d27af5"><b>na Discord (isabellearden)</b></font> alebo <font color="#d27af5"><b>na email (isabelle.arden@revelio.cz)</b></font>, avšak v odosielacom formulári vždy uveďte, kde mám Vašu úlohu hľadať. V opačnom prípade nemusí byť ohodnotená.</p> 
+         
+        <p style="margin-bottom: 0;"><b><font color="#d27af5">•</font></b> Termín odovzdania je do <font color="#d27af5"><b><font size="+1">31.10.2026</font></b></font>.</p> 
+    </div> 
+
+    <!-- Zmenšený podpis zarovnaný vpravo (šírka 70px) --> 
+    <div style="max-width: 90%; margin: 1.5rem auto 0.8rem auto; text-align: right;"> 
+        <img src="https://i.ibb.co/tPtxVkk/pppp.png" alt="pppp" border="0" style="width: 70px; height: auto; display: inline-block;" /> 
+    </div> 
+
+    <!-- Dolná čiara identická s hornou --> 
+    <div style="width: 100%; height: 16px; background-color: #d27af5; border-radius: 2px; box-shadow: 0 3px 8px rgba(0,0,0,0.4); margin-top: 0.4rem;"></div> 
+
+    <!-- Kontajner pre ikonky s tooltipom pod spodnou čiarou --> 
+    <div style="margin-top: 1rem; display: flex; gap: 20px; align-items: center; justify-content: center;"> 
+         
+        <!-- Discord ikona s tooltipom --> 
+        <div class="tooltip-container"> 
+            <a href="https://discord.com" target="_blank" title="Discord" style="display: inline-block;"> 
+                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" alt="Discord" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid #ffd700; background: #382219; padding: 4px; box-sizing: border-box; display: block;"> 
+            </a> 
+            <span class="tooltip-text">isabellearden</span> 
+        </div> 
+
+        <!-- Email / Obálka ikona s tooltipom --> 
+        <div class="tooltip-container"> 
+            <a href="mailto:isabelle.arden@revelio.cz" target="_blank" title="Pošta / Email" style="display: inline-block;"> 
+                <svg style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ffd700; background: #382219; padding: 5px; box-sizing: border-box; display: block;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+                    <path d="M4 7.00005L10.9416 11.1649C11.5841 11.5505 12.4159 11.5505 13.0584 11.1649L20 7.00005M5 18H19C20.1046 18 21 17.1046 21 16V8C21 6.89543 20.1046 6 19 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18Z" stroke="#ffd700" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/> 
+                </svg> 
+            </a> 
+            <span class="tooltip-text">isabelle.arden@revelio.cz</span> 
+        </div> 
+
+    </div> 
+
+</div> 
+
+</div>
